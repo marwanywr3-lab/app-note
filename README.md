@@ -67,3 +67,7 @@ npm test
 ## English
 
 Static, dependency-free bilingual notes PWA with local IndexedDB persistence, Supabase email/password auth and account-isolated sync. Gemini requests go directly from the browser using the user's browser-local API key. Optional memory includes at most eight relevant notes. Concurrent edits are preserved as separate copies. Use Settings for backups, import, models, and installation. See the Arabic sections above for deployment and data limits. This is an independent web application, not a Samsung product.
+
+## تحديث التصميم والمجلدات
+ألوان دافئة كريمية وبنية، مع الأيقونة الأصلية المرفقة من صاحب المشروع في الواجهة وأيقونة التثبيت. تتيح صفحة المجلدات إنشاء مجلد وجمع عدة ملاحظات فيه واختيار محتوياته من قائمة متعددة الاختيار. يمكن نقل ملاحظات مفردة أو محددة جماعيًا، وتنزيل المجلد وملاحظاته كملف JSON واحد قابل للاستيراد. أزرار حذف واضحة للملاحظات والمحادثات، مع نقل العناصر للسلة وإمكانية الاستعادة. توجد أيضًا خيارات التحديد والحذف الجماعي. اجتازت 13 حالة اختبار برمجية، بما فيها الحفاظ على محتوى الملاحظات وعزل المجلدات أثناء النقل والحذف والتصدير.
+
