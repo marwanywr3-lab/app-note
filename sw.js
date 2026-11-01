@@ -1,5 +1,5 @@
-const CACHE='appnote-v1.4.0-r2';
-const FILES=['./','./index.html','./style.css','./app.js','./core.js','./collections.js','./pwa.js','./study.js','./study-core.js','./study-ai.js','./study-media.js','./math-render.js','./pdf-summary.js','./pdf-core.js','./pdf-engine.js','./pdf-store.js','./pdf-manager.js','./gemini.js','./config.js','./manifest.webmanifest','./assets/appnote-icon.jpg','./assets/appnote-192.png','./assets/appnote-512.png','./assets/appnote-180.png','./manifest.webmanifest?v=1.4.0','./style.css?v=study-recall-2','./app.js?v=study-recall-2'];
+const CACHE='appnote-v1.4.1-r2';
+const FILES=['./','./index.html','./style.css','./app.js','./core.js','./collections.js','./pwa.js','./study.js','./study-core.js','./study-ai.js','./study-media.js','./math-render.js','./pdf-summary.js','./pdf-core.js','./pdf-engine.js','./pdf-transfer.js','./pdf-viewer.js','./pdf-store.js','./pdf-manager.js','./gemini.js','./config.js','./manifest.webmanifest','./assets/appnote-icon.jpg','./assets/appnote-192.png','./assets/appnote-512.png','./assets/appnote-180.png','./manifest.webmanifest?v=1.4.1','./style.css?v=pdf-sync-scroll-1','./app.js?v=pdf-sync-scroll-1'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('appnote-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',e=>{

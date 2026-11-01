@@ -2,6 +2,8 @@ import test from'node:test';import assert from'node:assert/strict';
 import{pageSelection,sourceParts,validateUnits,validateJudgments,grade,normalizedWeights,nextReview,combineAnswer,studyStats,improvedErrors,errorUnits,isStudyRecord,remapStudyLinks,calendarFile,jsonReply}from'../study-core.js';
 import{createStudyAI}from'../study-ai.js';
 import{mergeRemote}from'../core.js';
+import{resolveAttemptUnits}from'../study-core.js';
+test('A synced attempt uses its frozen rubric even when the source arrives empty or changes later',()=>{const frozen=[{id:'old',answer:'original'}],a={unitsSnapshot:frozen,unitIds:['old']};assert.deepEqual(resolveAttemptUnits(a,{units:[]}),frozen);assert.deepEqual(resolveAttemptUnits(a,{units:[{id:'new'}]}),frozen);assert.deepEqual(resolveAttemptUnits({unitsSnapshot:[]},{units:frozen}),frozen);assert.deepEqual(resolveAttemptUnits({unitsSnapshot:[],unitIds:['missing']},{units:frozen}),[])});
 const unit=(id,weight=1)=>({id,title:id,weight,answer:'المعلومة الصحيحة',question:'اذكر الفكرة',refs:[{page:1,quote:'المعلومة الصحيحة'}],hints:{light:'فكر في السياق',medium:'اربطها بالتعريف',strong:'تذكر العلاقة بين المفهومين'}});
 const judgment=(id,status='correct',ratio=1)=>({unitId:id,status,ratio,said:'إجابة',reason:'تحليل المعنى'});
 test('Arabic page selections and batching preserve every chosen character and page order',()=>{assert.deepEqual(pageSelection('١-٣،٥',6),[1,2,3,5]);assert.deepEqual(pageSelection('',3),[1,2,3]);assert.throws(()=>pageSelection('0,9',8));assert.throws(()=>pageSelection('4-2',8));const pages=[{number:3,text:'أ'.repeat(25000)},{number:8,text:'ب'.repeat(17000)}];const chunks=sourceParts(pages,12000).flat();for(const p of pages)assert.equal(chunks.filter(c=>c.number===p.number).map(c=>c.text).join(''),p.text)});
